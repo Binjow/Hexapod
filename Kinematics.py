@@ -1,11 +1,9 @@
 import math
 
 # Dimensions used for the PhantomX robot :
-constL1 = 51
-constL2 = 63.7
-constL3 = 93
-theta2Correction = 16  
-theta3Correction = theta2Correction+43.76  
+constL1 = 0.085
+constL2 = 0.185
+constL3 = 0.250
 
 # Dimensions used for the simple arm simulation
 # bx = 0.07
@@ -22,8 +20,8 @@ def alKashi(a, b, c):
 #calculate Direct Kinematics
 def computeDK(theta1, theta2, theta3, l1=constL1, l2=constL2, l3=constL3):
     theta1 = theta1 * math.pi / 100.0
-    theta2 = (theta2 - theta2Correction) * math.pi / 180.0
-    theta3 = (theta3 - theta3Correction) * math.pi / 180.0
+    theta2 = (theta2) * math.pi / 180.0
+    theta3 = (theta3) * math.pi / 180.0
     print("corrected angles={}, {}, {}".format(theta1*180.0/math.pi, theta2*180.0/math.pi, theta3*180.0/math.pi))
 
     planContribution = l1 + l2*math.cos(theta2) + l3*math.cos(theta2 + theta3)
