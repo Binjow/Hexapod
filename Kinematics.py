@@ -1,9 +1,9 @@
 import math
 
 # Dimensions used for the PhantomX robot :
-constL1 = 0.085
-constL2 = 0.185
-constL3 = 0.250
+constL1 = 51
+constL2 = 63.7
+constL3 = 93
 
 # Dimensions used for the simple arm simulation
 # bx = 0.07
