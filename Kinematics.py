@@ -26,11 +26,7 @@ def computeDK(theta1, theta2, theta3, l1=constL1, l2=constL2, l3=constL3):
 
     planContribution = l1 + l2*math.cos(theta2) + l3*math.cos(theta2 + theta3)
 
-    x = 0.2
-    y = 0.2
-    z = 0.5
-
-    return [x, y, z]
+    return theta1,theta2,theta3
 
 #calculate Indirect Kinematics
 def computeIK(x, y, z, l1=constL1, l2=constL2, l3=constL3):
@@ -45,11 +41,12 @@ def computeIK(x, y, z, l1=constL1, l2=constL2, l3=constL3):
     if (d > l2+l3) :
         print ("Destination point too far away")
         d = l2+l3
+    
 
     theta2 = -(alKashi(l2, d, l3) + math.atan2(z, xp))
-    theta3 = math.pi - alKashi(l2, l3, d)
-
-    return [modulo180(math.degrees(theta1)), modulo180(math.degrees(theta2)), modulo180(math.degrees(theta3))]
+    theta3 = (math.pi) + alKashi(l2, l3, d)
+    
+    return (modulo180(math.degrees(theta1)), modulo180(math.degrees(theta2)), modulo180(math.degrees(theta3)))
 
 #set radian to degree
 def modulo180(angle) :
@@ -60,14 +57,13 @@ def modulo180(angle) :
         if (angle > 180) :
             return -360 + angle 
         
-        return
+        
 
 #show the results in the terminal
 def main():
-    print ("0, 0, ,0--> ", computeDK(0, 0, 0, l1=constL1, l2=constL2,l3=constL3))
-    print ("90, 0 ,0--> ", computeDK(90, 0, 0, l1=constL1, l2=constL2,l3=constL3))
-    print ("180, -30.501, -67.819--> ",computeDK(180, -30.501, 67.819, l1=constL1, l2=constL2,l3=constL3))
-    print ("0, -30.645, 38.501--> ", computeDK(0, -30.645, 38.501, l1=constL1, l2=constL2,l3=constL3))
+    print ("\nDirect Kinematics--> ", computeDK(0, 0, 0))
+    print ("\nIndirect Kinematics--> ", computeIK(90, 0, 0))
+   
 
 
 if __name__ == "__main__":
